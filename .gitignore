@@ -8,12 +8,20 @@ Thumbs.db
 node_modules/
 package-lock.json
 
-# Secrets & Keys
+# Admin Scripts & Internal Utilities
+setup-admin.js
+test_*.js
+*.py
+products_to_add.md
+
+# Secrets, Service Accounts & Keys
 serviceAccountKey*.json
 *.env
 *.env.*
+*.pem
+*.key
 
-# Large media files (exceeds GitHub 100MB limit)
+# Large media files
 video/
 
 # Firebase & Deployment Cache
@@ -24,3 +32,4 @@ firestore-debug.log*
 
 # Backups & Temp
 css_backup/
+*.bak
