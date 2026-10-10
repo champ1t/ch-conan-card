@@ -1,0 +1,26 @@
+# OS & IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Secrets & Keys
+serviceAccountKey*.json
+*.env
+*.env.*
+
+# Large media files (exceeds GitHub 100MB limit)
+video/
+
+# Firebase & Deployment Cache
+.firebase/
+*-debug.log
+firebase-debug.log*
+firestore-debug.log*
+
+# Backups & Temp
+css_backup/

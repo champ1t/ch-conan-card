@@ -1,0 +1,159 @@
+/* ═══════════════════════════════════════════════════════════
+   CH.จุ่มการ์ดโคนัน — Animations & Keyframes
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Entrance ──────────────────────────────────────────────── */
+@keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+@keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:none} }
+@keyframes scaleIn  { from{opacity:0;transform:scale(0.90)} to{opacity:1;transform:scale(1)} }
+@keyframes slideInLeft  { from{opacity:0;transform:translateX(-24px)} to{opacity:1;transform:none} }
+@keyframes slideInRight { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:none} }
+
+/* ── Continuous ────────────────────────────────────────────── */
+@keyframes spin     { to{transform:rotate(360deg)} }
+@keyframes float    { 0%,100%{transform:translateY(0); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);} 50%{transform:translateY(-12px); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);} }
+@keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:.55} }
+@keyframes pulseSlow { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.7;transform:scale(.97)} }
+
+/* ── Glow pulses ────────────────────────────────────────────── */
+@keyframes glowPurple { 0%,100%{box-shadow:0 0 14px rgba(168,85,247,.35)} 50%{box-shadow:0 0 32px rgba(168,85,247,.65)} }
+@keyframes glowGold   { 0%,100%{box-shadow:0 0 14px rgba(245,158,11,.35)} 50%{box-shadow:0 0 32px rgba(245,158,11,.65)} }
+@keyframes glowRed    { 0%,100%{box-shadow:0 0 10px rgba(244,63,94,.50)} 50%{box-shadow:0 0 24px rgba(244,63,94,.90)} }
+
+/* ── Shimmer ────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%  {background-position:-600px 0}
+  100%{background-position: 600px 0}
+}
+@keyframes skeletonShimmer {
+  0%  {background-position:-400px 0}
+  100%{background-position: 400px 0}
+}
+@keyframes heroShimmer {
+  0%  {opacity:.2;transform:translateX(-120%) skewX(-20deg)}
+  100%{opacity:0;transform:translateX(220%) skewX(-20deg)}
+}
+
+/* ── Live ring ──────────────────────────────────────────────── */
+@keyframes liveRing {
+  0%  {transform:scale(1);opacity:.8}
+  100%{transform:scale(2.4);opacity:0}
+}
+
+/* ── Toast ──────────────────────────────────────────────────── */
+@keyframes toastIn  { from{opacity:0;transform:translateY(14px) scale(.96)} to{opacity:1;transform:none scale(1)} }
+@keyframes toastOut { to{opacity:0;transform:translateY(10px) scale(.96)} }
+
+/* ── Dot bounce (loading) ───────────────────────────────────── */
+@keyframes dotBounce {
+  0%,80%,100%{transform:scale(.4);opacity:.3}
+  40%        {transform:scale(1)  ;opacity:1  }
+}
+
+/* ── Card hover glow ─────────────────────────────────────────── */
+@keyframes cardReveal {
+  0%  {opacity:0;transform:scale(.85) rotateY(-20deg)}
+  60% {transform:scale(1.04) rotateY(4deg)}
+  100%{opacity:1;transform:scale(1) rotateY(0)}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HIGH-TECH HERO ANIMATIONS
+   ══════════════════════════════════════════════════════════════ */
+
+/* Title shimmer sweep across gradient */
+@keyframes titleShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Typewriter cursor blink */
+@keyframes cursorBlink {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0; }
+}
+
+/* HUD corner bracket pulse */
+@keyframes cornerPulse {
+  0%,100% { opacity: .55; }
+  50%     { opacity: 1;   box-shadow: 0 0 8px rgba(168,85,247,.9); }
+}
+
+/* Scan line sweep */
+@keyframes scanLine {
+  0%   { top: 0%;   opacity: .9; }
+  90%  { top: 100%; opacity: .4; }
+  100% { top: 100%; opacity: 0;  }
+}
+
+/* RARE DETECTED popup slide-in/out */
+@keyframes hudPopup {
+  0%         { transform: translateX(16px) scale(.9); opacity: 0; }
+  12%        { transform: translateX(0)   scale(1);   opacity: 1; }
+  80%        { transform: translateX(0)   scale(1);   opacity: 1; }
+  100%       { transform: translateX(16px) scale(.9); opacity: 0; }
+}
+
+/* Card holographic shimmer */
+@keyframes holoShimmer {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
+/* Particle float up */
+@keyframes particleFloat {
+  0%   { transform: translateY(0) scale(1); opacity: .8; }
+  100% { transform: translateY(-140px) scale(.4); opacity: 0; }
+}
+
+/* Glitch text effect */
+@keyframes glitchA {
+  0%,100% { clip-path: none; transform: none; }
+  5%  { clip-path: polygon(0 20%, 100% 20%, 100% 28%, 0 28%); transform: translateX(-5px); }
+  10% { clip-path: none; transform: none; }
+  55% { clip-path: polygon(0 60%, 100% 60%, 100% 72%, 0 72%); transform: translateX(4px); }
+  60% { clip-path: none; transform: none; }
+}
+@keyframes glitchB {
+  0%,100% { clip-path: none; transform: none; }
+  5%  { clip-path: polygon(0 42%, 100% 42%, 100% 58%, 0 58%); transform: translateX(5px); color: #a855f7; }
+  10% { clip-path: none; transform: none; }
+  35% { clip-path: polygon(0 10%, 100% 10%, 100% 22%, 0 22%); transform: translateX(-3px); }
+  40% { clip-path: none; transform: none; }
+}
+
+/* Eyebrow dot blink */
+@keyframes dotBlink {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%     { opacity: .4; transform: scale(.7); }
+}
+
+/* Badge counter for stats */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Utility classes ─────────────────────────────────────────── */
+.anim-fade-in     { animation: fadeIn  .3s ease both }
+.anim-fade-up     { animation: fadeUp  .5s ease both }
+.anim-scale-in    { animation: scaleIn .4s ease both }
+.anim-float       { animation: float 5s ease-in-out infinite }
+.anim-pulse       { animation: pulse 2s ease-in-out infinite }
+.anim-pulse-slow  { animation: pulseSlow 3s ease-in-out infinite }
+.anim-spin        { animation: spin .8s linear infinite }
+.anim-glow-purple { animation: glowPurple 2.5s ease-in-out infinite }
+.anim-glow-gold   { animation: glowGold 2.5s ease-in-out infinite }
+.anim-glow-red    { animation: glowRed 1.5s ease-in-out infinite }
+
+/* Stagger helpers */
+.stagger > *:nth-child(1){ animation-delay:.00s }
+.stagger > *:nth-child(2){ animation-delay:.07s }
+.stagger > *:nth-child(3){ animation-delay:.14s }
+.stagger > *:nth-child(4){ animation-delay:.21s }
+.stagger > *:nth-child(5){ animation-delay:.28s }
+.stagger > *:nth-child(6){ animation-delay:.35s }
+
+/* Removed reduced motion to force animations on all devices as requested */

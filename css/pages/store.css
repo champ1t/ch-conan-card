@@ -1,0 +1,198 @@
+/* =============================================================
+   AI FUTURISTIC STORE (Coverflow Carousel)
+   ============================================================= */
+
+:root {
+  --ai-cyan: #00f2fe;
+  --ai-blue: #4facfe;
+  --ai-purple: #b066fe;
+  --ai-magenta: #f857a6;
+  --ai-dark: #090a0f;
+  --ai-card-bg: rgba(20, 22, 30, 0.6);
+  --ai-glass: rgba(255, 255, 255, 0.05);
+}
+
+.store-root {
+  min-height: 100dvh;
+  background: var(--ai-dark);
+  color: #fff;
+  font-family: var(--font-en), sans-serif;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background Effects */
+.store-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+}
+.store-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at center, transparent 20%, var(--ai-dark) 90%);
+}
+.store-glow {
+  position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4;
+}
+.store-glow.g1 { width: 400px; height: 400px; top: -100px; left: -100px; background: var(--ai-cyan); }
+.store-glow.g2 { width: 500px; height: 500px; bottom: -150px; right: -100px; background: var(--ai-purple); }
+
+/* Main Content Wrapper */
+.store-content {
+  position: relative; z-index: 1; flex: 1;
+  display: flex; flex-direction: column;
+}
+
+/* ─── Top Navigation (Pills) ─── */
+.store-nav-scroll {
+  width: 100%; overflow-x: auto; scrollbar-width: none;
+  padding: 24px var(--space-4); margin-top: var(--nav-h);
+}
+.store-nav-scroll::-webkit-scrollbar { display: none; }
+.store-nav {
+  display: flex; gap: 16px; width: max-content; margin: 0 auto;
+}
+.store-pill {
+  background: var(--ai-glass); border: 1px solid rgba(255,255,255,0.1);
+  padding: 12px 24px; border-radius: 30px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative; overflow: hidden; min-width: 160px;
+}
+.store-pill:hover { background: rgba(255,255,255,0.1); }
+.store-pill.active {
+  background: rgba(0, 242, 254, 0.1);
+  border-color: var(--ai-cyan);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.2), inset 0 0 10px rgba(0, 242, 254, 0.1);
+  transform: translateY(-2px);
+}
+.store-pill-title { font-size: 1rem; font-weight: 900; letter-spacing: 1px; color: #fff; }
+.store-pill-price { font-size: 0.75rem; color: rgba(255,255,255,0.6); font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.store-pill-price i { color: var(--ai-cyan); font-style: normal; }
+.store-pill.active .store-pill-price { color: var(--ai-cyan); }
+
+/* ─── Coverflow Carousel ─── */
+.store-carousel-wrap {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  perspective: 1000px; padding: 20px 0; overflow: hidden;
+  touch-action: pan-y; /* allow scrolling page vertically, handle horizontal drag in JS */
+}
+.store-carousel {
+  position: relative; width: 100%; max-width: 1000px; height: 420px;
+  display: flex; align-items: center; justify-content: center;
+  transform-style: preserve-3d;
+}
+.store-pack-wrap {
+  position: absolute; width: 220px; height: 350px;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease, filter 0.6s ease;
+  cursor: pointer; user-select: none;
+}
+.store-pack-wrap:not(.active) { cursor: pointer; }
+
+/* The Pack Design (Cyberpunk/AI Theme) */
+.store-pack {
+  width: 100%; height: 100%; border-radius: 12px; position: relative;
+  background: linear-gradient(145deg, #1a1c29, #0a0b10);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  overflow: hidden;
+}
+/* Active Pack Floating Animation */
+.store-pack-wrap.active .store-pack {
+  animation: aiFloat 4s ease-in-out infinite;
+}
+@keyframes aiFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+.store-pack-crimp {
+  position: absolute; left: 0; right: 0; height: 20px; background: repeating-linear-gradient(90deg, rgba(0,0,0,0.3) 0, rgba(0,0,0,0.3) 2px, rgba(255,255,255,0.1) 3px, rgba(255,255,255,0.1) 5px); mix-blend-mode: overlay; z-index: 5;
+}
+.store-pack-crimp--top { top: 0; border-bottom: 2px solid rgba(0,0,0,0.5); }
+.store-pack-crimp--bottom { bottom: 0; border-top: 2px solid rgba(0,0,0,0.5); }
+
+/* Theme Colors for Packs */
+.store-pack-wrap[data-theme="starter"] .store-pack { border-color: #64748b; background: radial-gradient(circle at top right, #334155, #0f172a); }
+.store-pack-wrap[data-theme="silver"] .store-pack { border-color: #38bdf8; background: radial-gradient(circle at top right, #0284c7, #082f49); }
+.store-pack-wrap[data-theme="gold"] .store-pack { border-color: #facc15; background: radial-gradient(circle at top right, #ca8a04, #422006); }
+.store-pack-wrap[data-theme="diamond"] .store-pack { border-color: #c084fc; background: radial-gradient(circle at top right, #9333ea, #3b0764); }
+.store-pack-wrap[data-theme="ai"] .store-pack {
+  border-color: var(--ai-cyan);
+  background: radial-gradient(circle at center, #00f2fe, #4facfe, #090a0f 80%);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+}
+
+.store-pack-content {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; z-index: 2;
+}
+.store-pack-type { font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-top: auto; margin-bottom: 30px; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
+.store-pack-wrap[data-theme="ai"] .store-pack-type { color: #fff; text-shadow: 0 0 10px var(--ai-cyan), 0 0 20px var(--ai-blue); }
+
+.store-pack-ring {
+  position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+  width: 120px; height: 120px; border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.1); border-top-color: currentColor;
+  animation: aiSpin 10s linear infinite;
+}
+@keyframes aiSpin { to{transform:translate(-50%, -50%) rotate(360deg)} }
+
+/* Holographic Sweep */
+.store-pack-sweep {
+  position: absolute; inset: 0; background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.4) 50%, transparent 80%);
+  mix-blend-mode: overlay; transform: translateX(-150%);
+  transition: transform 0.5s ease; z-index: 10; pointer-events: none;
+}
+.store-pack-wrap:hover .store-pack-sweep,
+.store-pack-wrap.active .store-pack-sweep {
+  animation: aiSweep 3s cubic-bezier(0.25,1,0.5,1) infinite;
+}
+@keyframes aiSweep { 0%{transform:translateX(-150%)} 50%,100%{transform:translateX(150%)} }
+
+/* ─── Bottom Action Bar ─── */
+.store-action-bar {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  background: rgba(15, 17, 26, 0.8); backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 40px;
+  padding: 8px 8px 8px 24px; display: flex; align-items: center; gap: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8); z-index: 10;
+}
+
+.store-qty { display: flex; align-items: center; gap: 16px; font-weight: 800; font-size: 1.2rem; }
+.store-qty-btn { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; padding: 0 8px; }
+.store-qty-btn:hover { color: #fff; }
+.store-qty-num { width: 30px; text-align: center; }
+/* Pop animation when number changes */
+.store-qty-num.pop { animation: numPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes numPop { 0%{transform:scale(1)} 50%{transform:scale(1.4); color:var(--ai-cyan)} 100%{transform:scale(1)} }
+
+.store-buy-btn {
+  background: #000; color: #fff; border: 1px solid var(--ai-cyan);
+  padding: 14px 32px; border-radius: 30px; font-family: var(--font-th); font-weight: 800; font-size: 1.1rem;
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  position: relative; overflow: hidden; transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+}
+.store-buy-btn::before {
+  content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ai-cyan), var(--ai-blue));
+  opacity: 0; transition: opacity 0.3s; z-index: 0;
+}
+.store-buy-btn:hover::before { opacity: 1; }
+.store-buy-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 242, 254, 0.6); }
+.store-buy-btn:active { transform: scale(0.98); }
+.store-buy-btn > * { position: relative; z-index: 1; }
+
+.store-buy-btn .price { font-family: var(--font-en); font-weight: 900; color: var(--ai-cyan); }
+.store-buy-btn:hover .price { color: #000; }
+.store-buy-btn span:first-child { transition: color 0.3s; }
+.store-buy-btn:hover span:first-child { color: #000; }
+
+@media (max-width: 768px) {
+  .store-pack-wrap { width: 180px; height: 290px; }
+  .store-carousel { height: 350px; }
+  .store-action-bar { bottom: 20px; width: 90%; padding: 8px 8px 8px 16px; gap: 12px; justify-content: space-between; }
+  .store-qty { gap: 10px; }
+  .store-buy-btn { padding: 12px 20px; font-size: 1rem; }
+}

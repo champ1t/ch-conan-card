@@ -1,0 +1,92 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+    // =====================================================================
+    // ฟังก์ชันช่วยเหลือ (Helper Functions)
+    // =====================================================================
+    
+    // ตรวจสอบว่าผู้ใช้ล็อกอินอยู่หรือไม่
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // ตรวจสอบว่าเป็นแอดมินหรือไม่ (เช็คจาก Custom Claims หรือ Collection 'admins')
+    // วิธีนี้สมมติว่ามีการตั้งค่า Custom Claim admin = true 
+    // หรือเช็คจากเอกสารในคอลเลกชัน admins (เอา // ออกถ้าใช้วิธีนี้)
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.admin == true 
+        // || exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+    
+    // ตรวจสอบว่าเป็นเจ้าของข้อมูลหรือไม่
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // =====================================================================
+    // กฎสำหรับแต่ละ Collection
+    // =====================================================================
+
+    // 1. สินค้า (Products) & หมวดหมู่ (Categories)
+    // ลูกค้า: ดูได้อย่างเดียว
+    // แอดมิน: ดู เพิ่ม ลบ แก้ไข ได้ทั้งหมด
+    match /products/{productId} {
+      allow read: if true; 
+      allow write: if isAdmin();
+    }
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // 2. ข้อมูลผู้ใช้งาน (Users)
+    // ลูกค้า: ดูและแก้ไขเฉพาะโปรไฟล์ของตัวเอง
+    // แอดมิน: ดูและแก้ไขได้ทั้งหมด
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    // 3. คำสั่งซื้อ (Orders)
+    // ลูกค้า: สร้างคำสั่งซื้อได้ทุกคน (ไม่ต้องล็อกอิน) และสามารถดูออเดอร์ตัวเองได้ถ้ารู้ ID
+    // แอดมิน: ดูและแก้ไขสถานะได้ทั้งหมด
+    match /orders/{orderId} {
+      allow create: if true; // ไม่ต้องล็อกอินก็สั่งได้
+      allow get: if true;    // ให้ลูกค้าดูใบสั่งซื้อตัวเองได้ถ้ารู้ orderId (เช่น เอาไว้เช็คสถานะ)
+      allow list, update, delete: if isAdmin(); // แอดมินจัดการได้ทั้งหมด
+    }
+
+    // 4. ตะกร้าสินค้า (Carts)
+    // ลูกค้า: จัดการตะกร้าของตัวเองได้ (ใช้รหัสตะกร้าที่สุ่มในเครื่องลูกค้า)
+    match /carts/{cartId} {
+      allow read, write: if true; // ไม่ต้องล็อกอินก็จัดการตะกร้าตัวเองได้
+    }
+
+    // 5. ข้อมูลการไลฟ์สด & ไฮไลท์ (Live & Highlights)
+    // ลูกค้า: ดูได้อย่างเดียว
+    // แอดมิน: จัดการได้ทั้งหมด
+    match /live_sessions/{sessionId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /highlights/{highlightId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // 6. ข้อมูลแอดมิน (Admins)
+    // สำหรับเก็บรายชื่อ UID ของแอดมิน (ถ้าใช้ระบบเช็คจาก Collection)
+    match /admins/{adminId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin(); // ต้องเป็นแอดมินอยู่แล้วถึงจะเพิ่มแอดมินคนอื่นได้
+    }
+
+    // Default: ปิดการเข้าถึงทั้งหมดที่ไม่ได้ระบุไว้ด้านบนเพื่อความปลอดภัย
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
