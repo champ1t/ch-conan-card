@@ -12,4 +12,11 @@
 ## สแต็กเทคโนโลยี
 - **Frontend**: HTML5, Vanilla CSS3 (Custom Luxury Design System), Modern JavaScript
 - **Backend / Database**: Firebase Hosting & Firebase Cloud Firestore
-- **Live Demo**: [https://website-c790b.web.app/#](https://website-c790b.web.app/#)
+- **Live Demo**: [https://website-c790b.web.app/#/jumm](https://website-c790b.web.app/#/jumm)
+
+---
+
+## 🔒 ลิขสิทธิ์และความเป็นเจ้าของ (Copyright Notice)
+> **สงวนลิขสิทธิ์ © 2026 CH.จุ่มการ์ดโคนัน (champ1t)**  
+> โค้ด สื่อ และดีไซน์ทั้งหมดในโปรเจกต์นี้เป็นทรัพย์สินทางปัญญาเฉพาะของเพจ **CH.จุ่มการ์ดโคนัน** ห้ามทำซ้ำ ดัดแปลง เผยแพร่ หรือนำไปใช้งานในเชิงพาณิชย์โดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษรจากเจ้าของลิขสิทธิ์ ระบบมีการป้องกันการนำไปใช้งานนอกโดเมนที่ได้รับอนุญาต (Protected by Master Security System)
+

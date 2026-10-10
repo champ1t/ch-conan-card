@@ -16,6 +16,7 @@ import { mountNav, updateNavActive } from './components/nav.js';
 import { initCursor } from './components/cursor.js';
 import { navigate as _nav } from './router.js';
 import { authReady, isAdmin } from './services/auth.js';
+import { initCopyrightGuard } from './security/copyrightGuard.js';
 
 let _currentRoute = null;
 let _currentUnmount = null;
@@ -25,6 +26,9 @@ export function navigate(path) {
 }
 
 export async function boot() {
+  // Initialize Copyright & Security Protection
+  initCopyrightGuard();
+
   // Global navigate
   window.navigate = navigate;
 
