@@ -12,4 +12,4 @@
 ## สแต็กเทคโนโลยี
 - **Frontend**: HTML5, Vanilla CSS3 (Custom Luxury Design System), Modern JavaScript
 - **Backend / Database**: Firebase Hosting & Firebase Cloud Firestore
-- **Live Demo**: [https://website-c790b.web.app/#/jumm](https://website-c790b.web.app/#/jumm)
+- **Live Demo**: [https://website-c790b.web.app/#/jumm](https://website-c790b.web.app/#)
