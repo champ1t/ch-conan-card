@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "caveman": {
+      "source": "JuliusBrussee/Skills",
+      "sourceType": "github",
+      "skillPath": "skills/caveman/SKILL.md",
+      "computedHash": "1902fa0b569912d0c05736d8d98a72097d9b82719aac88c0c1d03bb546f9176d"
+    },
+    "caveman-compress": {
+      "source": "JuliusBrussee/caveman",
+      "sourceType": "github",
+      "skillPath": "skills/caveman-compress/SKILL.md",
+      "computedHash": "1074193fbb0179f616fd94bd62c3a5c8cb10506d7e2c4d935a18bbf25da6304c"
+    },
+    "token-optimization": {
+      "source": "bm629/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/token-optimization/SKILL.md",
+      "computedHash": "3cf99d341bebb75f4f5f8ce349beaf23c22ecb4f669841f86d0d6d763a68fb6c"
+    }
+  }
+}

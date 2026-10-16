@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The New Age of Anime Studio</title>
+<meta name="description" content="A scroll-driven portfolio for an anime studio. Placeholder studio name and email.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#05060b;--fg:#f4f6fb;--muted:#c3cadb;--accent:#d42a40;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--ink)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--fg);font-family:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;overflow-x:hidden}
+#track{position:relative;height:1200vh}
+#stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#000}
+#frame{position:relative;width:min(100%,calc(100vh*16/9));aspect-ratio:16/9;overflow:hidden;background:var(--ink);container-type:inline-size}
+.layer{position:absolute;inset:0;will-change:transform,opacity}
+video.layer{width:100%;height:100%;object-fit:cover;display:block}
+.layer img,.layer video{width:100%;height:100%;object-fit:cover;display:block}
+.fill{position:absolute;inset:0;pointer-events:none}
+.disp{font-family:"Dela Gothic One",Impact,"Arial Black",sans-serif;font-weight:400}
+.still .layer,.still .fade{transition:opacity .5s ease}
+#bar{position:absolute;top:0;left:0;height:max(2px,.25cqw);width:0;background:var(--fg);opacity:.7;z-index:4}
+#head{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:2cqw;padding:1.8cqw 4cqw 4.5cqw;background:linear-gradient(rgba(5,6,11,.84),rgba(5,6,11,0));pointer-events:none}
+#brand{font-size:max(11px,1.5cqw)}
+#nav{display:flex;gap:2.2cqw;pointer-events:auto}
+.chap{background:none;border:0;border-bottom:1px solid transparent;margin:0;padding:.6cqw 0;font:inherit;font-size:max(10px,1.1cqw);color:var(--fg);opacity:.6;cursor:pointer}
+.chap[aria-current="true"]{opacity:1;border-bottom-color:var(--fg)}
+.chap:focus-visible,#cta:focus-visible{outline:3px solid var(--fg);outline-offset:4px}
+#hero{position:absolute;left:4cqw;right:4cqw;bottom:5cqw;pointer-events:none}
+#hero h1{margin:0;font-size:max(26px,7.6cqw);line-height:.98;letter-spacing:-.01em}
+#hero p{margin:1.4cqw 0 0;color:var(--muted);font-size:max(11px,1.3cqw)}
+#hint{position:absolute;right:4cqw;bottom:1.6cqw;color:var(--muted);font-size:max(9px,1cqw);pointer-events:none}
+#panel{position:absolute;top:50%;right:4cqw;width:42cqw;padding:2.2cqw;border-radius:6px;background:rgba(5,6,11,.82);pointer-events:none}
+#panel h2{margin:0 0 1.2cqw;font-size:max(15px,2.8cqw);line-height:1.1}
+#panel ul{margin:0;padding:0;list-style:none;color:var(--muted);line-height:1.7;font-size:max(10px,1.25cqw)}
+#panel li{border-top:1px solid rgba(255,255,255,.18);padding:.6cqw 0}
+#end{position:absolute;left:4cqw;right:4cqw;bottom:5cqw}
+#end h2{margin:0 0 1.6cqw;font-size:max(18px,4.4cqw);line-height:1}
+#cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:1.1cqw 2.2cqw;border-radius:4px;font-size:max(11px,1.3cqw)}
+#end p{margin:1.2cqw 0 0;color:var(--muted);font-size:max(9px,1cqw)}
+#flash{background:#fff;opacity:0}
+#shards{width:100%;height:100%;opacity:0}
+#speed{width:100%;height:100%;opacity:0;transform-origin:44% 52%}
+</style>
+</head>
+<body>
+<main id="track">
+<div id="stage"><div id="frame">
+<div class="layer" id="l3"><img decoding="async" alt="Boy with glasses beside an upside-down twin" src="assets/twins_4k.jpg"></div>
+<div class="layer" id="l6"><img decoding="async" alt="Sniper aiming over a city skyline" src="assets/sniper_4k.jpg"></div>
+<div class="layer" id="l4"><img decoding="async" alt="Blonde woman in a blue police uniform" style="object-position:50% 20%" src="assets/officer.jpg"></div>
+<div class="layer" id="l7"><img decoding="async" alt="Child in lilac pajamas stretching awake in a sunlit bedroom" style="object-position:50% 40%" src="assets/morning.jpg"></div>
+<div class="layer" id="l5"><img decoding="async" alt="Figure in a white top hat, eyes in shadow" src="assets/hat_last_frame.jpg"><img id="l5g" decoding="async" alt="" aria-hidden="true" style="position:absolute;inset:0;opacity:0" src="assets/hat_last_frame_gray.jpg"><div class="fill" id="dark"></div></div>
+<video class="layer" id="vid" muted playsinline preload="auto" aria-hidden="true" data-src="clips/0_hat_reveal_1080p.mp4"></video>
+<img id="l5o" alt="" aria-hidden="true" style="display:none" src="assets/hat_original_4k.jpg">
+<svg class="fill" id="speed" viewBox="0 0 100 56" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<svg class="fill" id="shards" viewBox="0 0 100 56" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+<div class="fill" id="flash"></div>
+
+<div class="fill fade" id="heroVig" style="background:radial-gradient(ellipse at 0% 100%,rgba(5,6,11,.92) 0%,rgba(5,6,11,.62) 35%,rgba(5,6,11,0) 70%)"></div>
+<div class="fade" id="hero"><h1 class="disp">THE NEW AGE<br>OF ANIME<br>STUDIO</h1><p>[Studio name placeholder] makes episodic anime, from first key to final delivery.</p></div>
+<div class="fade" id="hint">Scroll to begin</div>
+
+<div id="bar"></div>
+<header id="head">
+<div class="disp" id="brand">[Studio name]</div>
+<nav id="nav" aria-label="Chapters">
+<button class="chap" type="button" data-at="0">Welcome</button>
+<button class="chap" type="button" data-at="0.17">Look closer</button>
+<button class="chap" type="button" data-at="0.44">How we work</button>
+<button class="chap" type="button" data-at="0.57">Action and suspense</button>
+<button class="chap" type="button" data-at="0.9">Next episode</button>
+</nav>
+</header>
+
+<div class="fade" id="panel"><h2 class="disp">Every frame, drawn with intent.</h2><ul><li>Key animation and in-betweens</li><li>Backgrounds and color</li><li>Compositing and final delivery</li></ul></div>
+
+<div class="fill fade" id="endVig" style="background:radial-gradient(ellipse at 0% 100%,rgba(5,6,11,.9) 0%,rgba(5,6,11,.55) 35%,rgba(5,6,11,0) 70%)"></div>
+<div class="fade" id="end"><h2 class="disp">Bring us your next episode.</h2><a id="cta" href="mailto:hello@yourstudio.example">Start a project</a><p>[hello@yourstudio.example is a placeholder email]</p></div>
+</div></div>
+</main>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var cl=function(x){return Math.max(0,Math.min(1,x))};
+var seg=function(p,a,b){return cl((p-a)/(b-a))};
+var ez=function(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
+var rnd=function(i){var s=Math.sin(i*127.1)*43758.5453;return s-Math.floor(s)};
+var mq=matchMedia('(prefers-reduced-motion: reduce)'),still=mq.matches;
+var E={};['track','l3','l4','l5','l5g','vid','speed','l6','l7','dark','hero','heroVig','hint','panel','end','endVig','flash','shards','bar'].forEach(function(i){E[i]=$(i)});
+var chaps=[].slice.call(document.querySelectorAll('.chap'));
+
+/* VIDEO HOOK: to swap a still for a Kling clip, add an entry, e.g.
+   VIDEOS.l3={src:'fall.mp4',from:.30,to:.46}  (from/to are scroll progress p of the ORIGINAL 0..1 timeline;
+   q-based beats map as p=q*.84). The clip's currentTime is scrubbed by scroll. Encode with every frame a keyframe. */
+var VIDEOS={};
+var vids=[];
+Object.keys(VIDEOS).forEach(function(id){
+  var v=document.createElement('video');v.src=VIDEOS[id].src;v.muted=true;v.playsInline=true;v.preload='auto';v.setAttribute('aria-hidden','true');
+  var img=E[id].querySelector('img');E[id].insertBefore(v,img);img.style.display='none';vids.push([v,VIDEOS[id]]);
+});
+
+for(var k=0;k<40;k++){var an=k/40*Math.PI*2+rnd(k)*.1,r0=12+rnd(k+5)*14,r1=80,ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+  ln.setAttribute('x1',44+Math.cos(an)*r0);ln.setAttribute('y1',29+Math.sin(an)*r0);ln.setAttribute('x2',44+Math.cos(an)*r1);ln.setAttribute('y2',29+Math.sin(an)*r1);
+  ln.setAttribute('stroke','#05060b');ln.setAttribute('stroke-opacity','.85');ln.setAttribute('stroke-width',(.12+rnd(k+2)*.3)+'');E.speed.appendChild(ln)}
+var N=16,cx=50,cy=30,polys=[],NS='http://www.w3.org/2000/svg';
+for(var i=0;i<N;i++){
+  var a0=i/N*Math.PI*2,a1=(i+1)/N*Math.PI*2,r0=60+rnd(i)*40,r1=60+rnd(i+9)*40,g=document.createElementNS(NS,'polygon');
+  g.setAttribute('points',cx+','+cy+' '+(cx+Math.cos(a0)*r0)+','+(cy+Math.sin(a0)*r0)+' '+(cx+Math.cos(a1)*r1)+','+(cy+Math.sin(a1)*r1));
+  g.setAttribute('fill','rgba(120,170,230,.16)');g.setAttribute('stroke','rgba(70,110,170,.9)');g.setAttribute('stroke-width','.18');
+  g.style.transformBox='fill-box';g.style.transformOrigin='center';g._m=(a0+a1)/2;g._r=rnd(i+3)*2-1;E.shards.appendChild(g);polys.push(g);
+}
+
+var maxS=1,lastSp=-1,useVideo=true,vdur=0,l5o=$('l5o');
+E.vid.addEventListener('loadedmetadata',function(){vdur=E.vid.duration||0;kick()});
+var l5img=E.l5.querySelector('img'),l5last=l5img.getAttribute('src');
+E.vid.addEventListener('error',function(){if(!E.vid.getAttribute('src'))return;useVideo=false;l5img.src=l5o.src;kick()});
+E.vid.addEventListener('loadeddata',function(){useVideo=true;l5img.src=l5last;kick()});
+E.vid.addEventListener('seeked',kick);
+/* Load the clip as a Blob: blob URLs are always seekable, even on dev servers without HTTP Range support (python -m http.server). */
+(function(){var u=E.vid.getAttribute('data-src');
+  function direct(){E.vid.src=u}
+  if(!window.fetch||!window.URL||location.protocol==='file:')return direct();
+  fetch(u).then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(b){E.vid.src=URL.createObjectURL(b)}).catch(direct);
+})();
+function measure(){maxS=Math.max(1,E.track.offsetHeight-innerHeight)}
+function render(p){
+  document.body.classList.toggle('still',still);
+  var q=Math.min(1,p/.84),T=function(el,t){el.style.transform=t};
+  var heroO,hintO,panelO,endO,heroT='none',panelT='translateY(-50%)',endT='none';
+  E.bar.style.width=(p*100)+'%';
+  if(still){
+    var on=function(a,b){return q>=a&&q<b?1:0};
+    E.l5.style.opacity=on(0,.3);E.l5.style.visibility='visible';E.l5.style.transform='none';E.l5g.style.opacity=0;
+    E.dark.style.background=useVideo?'none':'rgba(0,0,0,'+(q<.03?.9:0)+')';E.vid.style.visibility='hidden';
+    E.l3.style.opacity=on(.3,.68);E.l3.style.transform='none';
+    E.l6.style.opacity=on(.68,.8);E.l6.style.transform='none';
+    E.l4.style.opacity=(q>=.8&&p<.86)?1:0;E.l4.style.transform='none';
+    E.l7.style.opacity=p>=.86?1:0;
+    E.flash.style.opacity=0;E.shards.style.opacity=0;E.speed.style.opacity=0;
+    heroO=q<.03?1:0;hintO=heroO;panelO=q>=.5&&q<.68?1:0;endO=p>=.94?1:0;
+  }else{
+    var a=ez(seg(q,.03,.2)),b=ez(seg(q,.2,.36)),c=ez(seg(q,.3,.46)),f=ez(seg(q,.7,.8)),kick=ez(seg(q,.82,.88)),rec=ez(seg(q,.9,.99));
+    E.dark.style.background=useVideo?'none':'radial-gradient(ellipse at 44% 52%,rgba(0,0,0,0) '+(a*95)+'%,rgba(0,0,0,.9) '+(a*95+18)+'%)';
+    var showV=useVideo&&q<.2;E.vid.style.visibility=showV?'visible':'hidden';
+    if(showV&&vdur){var tv=seg(q,.03,.2)*vdur;if(Math.abs(E.vid.currentTime-tv)>.008)E.vid.currentTime=tv}
+    E.l5.style.transform='scale('+(1+b*1.9)+') rotate('+(b*24)+'deg) translateY('+(b*18)+'%)';
+    E.l5g.style.opacity=b;
+    E.l5.style.opacity=1-seg(q,.3,.4);E.l5.style.visibility=(q>.41||showV)?'hidden':'visible';
+    E.l3.style.opacity=q>.3?1:0;T(E.l3,'translateY('+((1-c)*-100)+'%)');
+    E.l6.style.opacity=seg(q,.66,.7);T(E.l6,'translateX('+(-f*100)+'%)');
+    var sh=(q<.88||q>.915)?0:(rnd(Math.floor(q*900))-.5)*14;
+    E.l4.style.transformOrigin='44% 52%';E.l4.style.opacity=q>.69?1:0;
+    T(E.l4,'translate('+(100*(1-f)+sh*.3)+'%,'+sh+'px) scale('+(1+.5*kick-.45*rec)+')');
+    E.l7.style.opacity=ez(seg(p,.86,.92));
+    E.flash.style.opacity=(q<.86?0:q<.88?seg(q,.86,.88):1-seg(q,.88,.92))*.9;
+    E.speed.style.opacity=seg(q,.8,.84)*(1-seg(q,.87,.92));T(E.speed,'scale('+(1+.35*seg(q,.8,.9))+')');
+    var sp=ez(seg(q,.88,.97));E.shards.style.opacity=q<.875?0:1-seg(q,.94,.99);
+    if(sp!==lastSp&&E.shards.style.opacity>0)polys.forEach(function(g){T(g,'translate('+Math.cos(g._m)*sp*34+'px,'+Math.sin(g._m)*sp*34+'px) rotate('+g._r*sp*22+'deg)')});
+    lastSp=sp;
+    var ho=seg(q,0,.07),pi=seg(q,.5,.56);
+    heroO=1-ho;heroT='translateY('+(-ho*40)+'px)';hintO=1-seg(q,0,.03);
+    panelO=pi*(1-seg(q,.64,.69));panelT='translateY(calc(-50% + '+((1-pi)*30)+'px))';
+    endO=seg(p,.94,1);endT='translateY('+((1-endO)*24)+'px)';
+  }
+  [E.l3,E.l6,E.l4,E.l7].forEach(function(el){el.style.visibility=(still||parseFloat(el.style.opacity)>.001)?'visible':'hidden'});
+  E.hero.style.opacity=heroO;E.hero.style.transform=heroT;E.heroVig.style.opacity=heroO;E.hint.style.opacity=hintO;
+  E.panel.style.opacity=panelO;E.panel.style.transform=panelT;
+  E.end.style.opacity=endO;E.end.style.transform=endT;E.end.style.visibility=p>=.94?'visible':'hidden';E.endVig.style.opacity=endO;
+  var cur=[q<.2,q>=.2&&q<.46,q>=.46&&q<.68,q>=.68&&p<.86,p>=.86];
+  chaps.forEach(function(el,i){el.setAttribute('aria-current',cur[i]?'true':'false')});
+  vids.forEach(function(x){var v=x[0],o=x[1];if(v.duration)v.currentTime=seg(p,o.from,o.to)*v.duration});
+}
+var target=0,cur=0,last=0,raf=0;
+function readTarget(){return cl(scrollY/maxS)}
+function frame(t){
+  raf=0;var dt=Math.min(.05,(t-last)/1000||.008);last=t;
+  target=readTarget();
+  if(still){cur=target}else{cur+=(target-cur)*(1-Math.exp(-dt*16))}
+  render(cur);
+  if(Math.abs(target-cur)>.00004){raf=requestAnimationFrame(frame)}else{cur=target;render(cur)}
+}
+function kick(){if(!raf){last=performance.now();raf=requestAnimationFrame(frame)}}
+chaps.forEach(function(el){el.addEventListener('click',function(){
+  scrollTo({top:maxS*parseFloat(el.dataset.at),behavior:still?'auto':'smooth'});
+})});
+addEventListener('scroll',kick,{passive:true});
+addEventListener('resize',function(){measure();kick()});
+(mq.addEventListener?mq.addEventListener('change',function(e){still=e.matches;kick()}):mq.addListener(function(e){still=e.matches;kick()}));
+measure();cur=target=readTarget();render(cur);
+/* decode every frame up front so the first draw of each beat never stalls */
+[].forEach.call(document.images,function(im){if(im.decode)im.decode().catch(function(){})});
+addEventListener('load',function(){measure();kick()});
+})();
+</script>
+</body>
+</html>
