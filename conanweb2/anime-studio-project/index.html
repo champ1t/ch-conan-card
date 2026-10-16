@@ -27,9 +27,10 @@ video.layer{width:100%;height:100%;object-fit:cover;display:block}
 #brand img{height:max(42px,5.2cqw);width:auto;object-fit:contain;filter:drop-shadow(0 4px 15px rgba(0,0,0,0.8)) drop-shadow(0 0 10px rgba(251,191,36,0.25));transition:transform 0.3s ease}
 #brand img:hover{transform:scale(1.05)}
 #nav{display:flex;gap:2.2cqw;pointer-events:auto}
-.chap{background:none;border:0;border-bottom:1px solid transparent;margin:0;padding:.6cqw 0;font:inherit;font-size:max(10px,1.1cqw);color:var(--fg);opacity:.6;cursor:pointer}
-.chap[aria-current="true"]{opacity:1;border-bottom-color:var(--fg)}
-.chap:focus-visible,#cta:focus-visible{outline:3px solid var(--fg);outline-offset:4px}
+.chap{background:none;border:0;border-bottom:2px solid transparent;margin:0;padding:.5cqw 0;font-family:"Kanit","Zen Kaku Gothic New",sans-serif;font-weight:600;font-size:max(11px,1.25cqw);color:var(--fg);opacity:.75;cursor:pointer;letter-spacing:0.5px;transition:all 0.25s ease}
+.chap:hover{opacity:1;color:#facc15}
+.chap[aria-current="true"]{opacity:1;border-bottom-color:#facc15;color:#facc15}
+.chap:focus-visible,#cta:focus-visible{outline:3px solid #facc15;outline-offset:4px}
 #hero{position:absolute;left:4cqw;right:4cqw;bottom:5cqw;pointer-events:none}
 #hero h1{margin:0;font-size:max(28px,7.8cqw);line-height:1.05;letter-spacing:-.01em;text-transform:uppercase}
 #hero p{margin:1.4cqw 0 0;color:var(--muted);font-size:max(11px,1.3cqw)}
@@ -68,12 +69,12 @@ video.layer{width:100%;height:100%;object-fit:cover;display:block}
 <div id="bar"></div>
 <header id="head">
 <div id="brand"><img src="assets/CH_Logohome.png" alt="CH.จุ่มการ์ดโคนัน" /></div>
-<nav id="nav" aria-label="Chapters">
-<button class="chap" type="button" data-at="0">Welcome</button>
-<button class="chap" type="button" data-at="0.17">Look closer</button>
-<button class="chap" type="button" data-at="0.44">How we work</button>
-<button class="chap" type="button" data-at="0.57">Action and suspense</button>
-<button class="chap" type="button" data-at="0.9">Next episode</button>
+<nav id="nav" aria-label="เมนูหลัก">
+<button class="chap" type="button" data-at="0">หน้าหลัก</button>
+<button class="chap" type="button" data-at="0.17">ร้านค้า</button>
+<button class="chap" type="button" data-at="0.44">Jumm</button>
+<button class="chap" type="button" data-at="0.57">Highlight</button>
+<button class="chap" type="button" data-at="0.9">ติดตามพัสดุ</button>
 </nav>
 </header>
 
