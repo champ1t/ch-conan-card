@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The New Age of Anime Studio</title>
-<meta name="description" content="A scroll-driven portfolio for an anime studio. Placeholder studio name and email.">
+<title>CH.จุ่มการ์ดโคนัน — Official Store & Experience</title>
+<meta name="description" content="CH.จุ่มการ์ดโคนัน — ร้านการ์ดสะสมโคนัน ซื้อการ์ด กล่อง แพ็ค สุ่มการ์ดออนไลน์ พร้อมประสบการณ์สุดพรีเมียม">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;700&family=Kanit:wght@700;800;900&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#05060b;--fg:#f4f6fb;--muted:#c3cadb;--accent:#d42a40;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--ink)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -19,17 +19,19 @@ body{margin:0;background:var(--ink);color:var(--fg);font-family:"Zen Kaku Gothic
 video.layer{width:100%;height:100%;object-fit:cover;display:block}
 .layer img,.layer video{width:100%;height:100%;object-fit:cover;display:block}
 .fill{position:absolute;inset:0;pointer-events:none}
-.disp{font-family:"Dela Gothic One",Impact,"Arial Black",sans-serif;font-weight:400}
+.disp{font-family:"Kanit","Dela Gothic One",Impact,"Arial Black",sans-serif;font-weight:800}
 .still .layer,.still .fade{transition:opacity .5s ease}
 #bar{position:absolute;top:0;left:0;height:max(2px,.25cqw);width:0;background:var(--fg);opacity:.7;z-index:4}
-#head{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:2cqw;padding:1.8cqw 4cqw 4.5cqw;background:linear-gradient(rgba(5,6,11,.84),rgba(5,6,11,0));pointer-events:none}
-#brand{font-size:max(11px,1.5cqw)}
+#head{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:2cqw;padding:1.2cqw 4cqw 4.5cqw;background:linear-gradient(rgba(5,6,11,.84),rgba(5,6,11,0));pointer-events:none}
+#brand{display:flex;align-items:center;pointer-events:auto}
+#brand img{height:max(42px,5.2cqw);width:auto;object-fit:contain;filter:drop-shadow(0 4px 15px rgba(0,0,0,0.8)) drop-shadow(0 0 10px rgba(251,191,36,0.25));transition:transform 0.3s ease}
+#brand img:hover{transform:scale(1.05)}
 #nav{display:flex;gap:2.2cqw;pointer-events:auto}
 .chap{background:none;border:0;border-bottom:1px solid transparent;margin:0;padding:.6cqw 0;font:inherit;font-size:max(10px,1.1cqw);color:var(--fg);opacity:.6;cursor:pointer}
 .chap[aria-current="true"]{opacity:1;border-bottom-color:var(--fg)}
 .chap:focus-visible,#cta:focus-visible{outline:3px solid var(--fg);outline-offset:4px}
 #hero{position:absolute;left:4cqw;right:4cqw;bottom:5cqw;pointer-events:none}
-#hero h1{margin:0;font-size:max(26px,7.6cqw);line-height:.98;letter-spacing:-.01em}
+#hero h1{margin:0;font-size:max(28px,7.8cqw);line-height:1.05;letter-spacing:-.01em;text-transform:uppercase}
 #hero p{margin:1.4cqw 0 0;color:var(--muted);font-size:max(11px,1.3cqw)}
 #hint{position:absolute;right:4cqw;bottom:1.6cqw;color:var(--muted);font-size:max(9px,1cqw);pointer-events:none}
 #panel{position:absolute;top:50%;right:4cqw;width:42cqw;padding:2.2cqw;border-radius:6px;background:rgba(5,6,11,.82);pointer-events:none}
@@ -60,12 +62,12 @@ video.layer{width:100%;height:100%;object-fit:cover;display:block}
 <div class="fill" id="flash"></div>
 
 <div class="fill fade" id="heroVig" style="background:radial-gradient(ellipse at 0% 100%,rgba(5,6,11,.92) 0%,rgba(5,6,11,.62) 35%,rgba(5,6,11,0) 70%)"></div>
-<div class="fade" id="hero"><h1 class="disp">THE NEW AGE<br>OF ANIME<br>STUDIO</h1><p>[Studio name placeholder] makes episodic anime, from first key to final delivery.</p></div>
+<div class="fade" id="hero"><h1 class="disp">CH.จุ่มการ์ดโคนัน</h1><p>ร้านการ์ดสะสมโคนัน ซื้อการ์ด กล่อง แพ็ค สุ่มการ์ดออนไลน์ พร้อมประสบการณ์สุดพรีเมียม</p></div>
 <div class="fade" id="hint">Scroll to begin</div>
 
 <div id="bar"></div>
 <header id="head">
-<div class="disp" id="brand">[Studio name]</div>
+<div id="brand"><img src="assets/CH_Logohome.png" alt="CH.จุ่มการ์ดโคนัน" /></div>
 <nav id="nav" aria-label="Chapters">
 <button class="chap" type="button" data-at="0">Welcome</button>
 <button class="chap" type="button" data-at="0.17">Look closer</button>
